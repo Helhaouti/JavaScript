@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Imageslider</title>
+
+    <style>
+        #slideholder {
+            height: 300px;
+            width: 300px;
+            border: 3px black solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="slideholder">    </div>
+
+<script>
+    var plaatjes = [1,2,3,4,5,6,7,8,9];
+    var teller = 0;
+
+    var sliderholder = document.getElementById("slideholder");
+
+    sliderholder.style.backgroundImage = "url('resources/1.png')";
+
+    sliderholder.addEventListener("click", function () {
+        sliderholder.style.backgroundImage = "url('resources/" + getAap() + ".png')"
+    });
+
+    function  getAap() {
+        teller++;
+        if (teller == 10) {teller = 1};
+        return teller;
+    }
+
+</script>
+</body>
+</html>
