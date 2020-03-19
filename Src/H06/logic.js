@@ -64,11 +64,7 @@ function pictureHolderGenerator() {
     document.getElementById("form").style.display = "none";
     document.getElementById("pics").style.display = "block";
     document.getElementById("volgendeButton").style.display = "block";
-    
-
-    button = document.getElementsByTagName("button");
-    button[0].style.display = "block";
-    
+        
     for (var i = 0; i < 18; i++) {
         pics = document.getElementById("pics");
 
@@ -79,17 +75,6 @@ function pictureHolderGenerator() {
 
         pictureHolder.addEventListener("click", function () {
             var currentClick = this.id;
-
-            if (playerOneScore + playerTwoScore === 9) {
-                if (playerOneScore > playerTwoScore){
-                    alert("je hebt gewonnen " + playerNames[0]);
-                } else if (playerOneScore < playerTwoScore) {
-                    alert("je hebt gewonnen " + playerNames[1]);
-                }
-
-                document.getElementById("volgendeButton").style.display = "none";
-                document.getElementById("resetButton").style.display = "block";
-            }
 
             if (currentClick !== previousClick && playerOneScore + playerTwoScore < 9) {
                 clickTracker(this.id);
@@ -169,6 +154,17 @@ function nextTurn () {
         firstClickedPictureHolderInfo = "", secondClickedPictureHolderInfo = "";
         clickCounter = 1;
         statKeeper();
+    }
+
+    if (playerOneScore + playerTwoScore === 9) {
+        if (playerOneScore > playerTwoScore){
+            alert("je hebt gewonnen " + playerNames[0]);
+        } else if (playerOneScore < playerTwoScore) {
+            alert("je hebt gewonnen " + playerNames[1]);
+        }
+
+        document.getElementById("volgendeButton").style.display = "none";
+        document.getElementById("resetButton").style.display = "block";
     }
 }
 
