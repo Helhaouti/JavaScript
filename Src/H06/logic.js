@@ -133,28 +133,30 @@ function clickTracker(id) {
 }
 
 function nextTurn () {
-    if (clickCounter >= 2 && firstClickedPicId === secondClickedPicId) {
-
-        firstClickedPictureHolderInfo = "", secondClickedPictureHolderInfo = "";
-        clickCounter = 1;
-
-        if (player == 0) {
-            playerOneScore++;
-        } else if (player == 1) {
-            playerTwoScore++;
+    if (firstClickedPictureHolderInfo !== "" && secondClickedPictureHolderInfo !== "") {
+        if (clickCounter >= 2 && firstClickedPicId === secondClickedPicId) {
+        
+            firstClickedPictureHolderInfo = "", secondClickedPictureHolderInfo = "";
+            clickCounter = 1;
+        
+            if (player == 0) {
+                playerOneScore++;
+            } else if (player == 1) {
+                playerTwoScore++;
+            }
+            statKeeper();
+        } else if (clickCounter >= 2 && firstClickedPicId !== secondClickedPicId) {
+            var firstClicked = document.getElementById(firstClickedPictureHolderInfo);
+            var secondClicked = document.getElementById(secondClickedPictureHolderInfo);
+        
+            firstClicked.removeChild(firstClicked.childNodes[0]);
+            secondClicked.removeChild(secondClicked.childNodes[0]);
+        
+            firstClickedPictureHolderInfo = "", secondClickedPictureHolderInfo = "";
+            clickCounter = 1;
+            statKeeper();
         }
-        statKeeper();
-    } else if (clickCounter >= 2 && firstClickedPicId !== secondClickedPicId) {
-        var firstClicked = document.getElementById(firstClickedPictureHolderInfo);
-        var secondClicked = document.getElementById(secondClickedPictureHolderInfo);
-
-        firstClicked.removeChild(firstClicked.childNodes[0]);
-        secondClicked.removeChild(secondClicked.childNodes[0]);
-
-        firstClickedPictureHolderInfo = "", secondClickedPictureHolderInfo = "";
-        clickCounter = 1;
-        statKeeper();
-    }
+}
 
     if (playerOneScore + playerTwoScore === 9) {
         if (playerOneScore > playerTwoScore){
